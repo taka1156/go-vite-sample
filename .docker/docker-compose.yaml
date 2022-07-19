@@ -1,7 +1,15 @@
 version: '3'
 
 services:
-  go:
+  frontend:
+    build: ./node
+    ports:
+      - '3000:3000'
+    tty: true
+    volumes:
+      - ../frontend:/frontend
+
+  backend:
     build: ./golang
     tty: true
     ports:
