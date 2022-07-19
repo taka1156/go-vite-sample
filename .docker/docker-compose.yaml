@@ -6,8 +6,6 @@ services:
     tty: true
     ports:
       - 8080:8080
-    env_file:
-      - ./mysql/.env
     depends_on:
       - db
     volumes:
@@ -23,8 +21,6 @@ services:
     tty: true
     ports:
       - 3306:3306
-    env_file:
-      - ./mysql/.env
     volumes:
       - ./db:/var/lib/mysql
 
