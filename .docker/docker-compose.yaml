@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  go:
+    build: ./golang
+    tty: true
+    ports:
+      - 8080:8080
+    env_file:
+      - ./mysql/.env
+    depends_on:
+      - db
+    volumes:
+      - ../backend/app:/go/src/app
+
+  db:
+    build: ./mysql
+    environment:
+      - MYSQL_DATABASE=sample
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=root_password
+    tty: true
+    ports:
+      - 3306:3306
+    env_file:
+      - ./mysql/.env
+    volumes:
+      - ./db:/var/lib/mysql
+
+volumes:
+    db: {}
